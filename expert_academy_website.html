@@ -1,0 +1,1899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert Academy - Professional IT Training Institute</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c5aa0;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: #2c5aa0;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: #2c5aa0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after, .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #2c5aa0;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .hero-content .highlight {
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            animation: slideInLeft 1s ease-out 0.2s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            animation: slideInLeft 1s ease-out 0.4s both;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            animation: slideInRight 1s ease-out 0.6s both;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-image img:hover {
+            transform: perspective(1000px) rotateY(0deg) scale(1.05);
+        }
+
+        /* Main Content Sections */
+        .content-section {
+            padding: 80px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            color: #2c5aa0;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Course Grid */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .course-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .course-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .course-card:hover .course-image img {
+            transform: scale(1.1);
+        }
+
+        .course-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .course-content {
+            padding: 2rem;
+        }
+
+        .course-content h3 {
+            font-size: 1.5rem;
+            color: #2c5aa0;
+            margin-bottom: 1rem;
+        }
+
+        .course-content p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .course-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .course-features li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .course-features li i {
+            color: #28a745;
+            margin-right: 0.5rem;
+            width: 20px;
+            font-size: 0.8rem;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .duration {
+            display: flex;
+            align-items: center;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .duration i {
+            margin-right: 0.5rem;
+            color: #2c5aa0;
+        }
+
+        .certification {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            background: linear-gradient(145deg, #f0f2f5, #ffffff);
+            box-shadow: 5px 5px 15px #d1d1d1, -5px -5px 15px #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 10px 10px 30px #d1d1d1, -10px -10px 30px #ffffff;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: #2c5aa0;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            color: #2c5aa0;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 15px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="90" cy="20" r="1.5" fill="rgba(255,255,255,0.05)"/><circle cx="30" cy="90" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="70" cy="70" r="2" fill="rgba(255,255,255,0.05)"/></svg>');
+            animation: float 30s ease-in-out infinite;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-info h3 {
+            color: #ffd700;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .contact-details {
+            list-style: none;
+            margin-bottom: 3rem;
+        }
+
+        .contact-details li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-details li:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-2px);
+        }
+
+        .contact-details i {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: #ffd700;
+            width: 30px;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details strong {
+            color: #ffd700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .call-btn {
+            background: #007bff;
+            color: white;
+        }
+
+        .call-btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        .email-btn {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        .email-btn:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .location-info {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .location-info h4 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .location-info p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: white;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            background: white;
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-color: #ffd700;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-top: 0.2rem;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem 2rem;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        }
+
+        /* Success/Error Messages */
+        .success-message, .error-message {
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .success-message {
+            background: #28a745;
+            color: white;
+            border-left: 4px solid #20c997;
+        }
+
+        .error-message {
+            background: #dc3545;
+            color: white;
+            border-left: 4px solid #c82333;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 5% 1rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p,
+        .footer-section li {
+            line-height: 1.8;
+            color: #ccc;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #ffd700;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #2c5aa0;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #666;
+        }
+
+        /* Animations */
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-animate.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                padding: 1rem 0;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-actions {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .action-btn {
+                flex: 1;
+                min-width: 150px;
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .quick-actions {
+                flex-direction: column;
+            }
+
+            .action-btn {
+                flex: none;
+            }
+
+            .contact-form {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="Images/logo.png" alt="Expert Academy Logo">
+                Expert Academy
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#courses" class="nav-link">Courses</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#features" class="nav-link">Why Choose Us</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Master <span class="highlight">Hardware</span> & <span class="highlight">Network Engineering</span></h1>
+                <p>Join Expert Academy's comprehensive training programs and launch your career in IT with Kerala State RUTRONIX approved certifications.</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Enroll Now
+                    </a>
+                    <a href="#courses" class="btn btn-secondary">
+                        <i class="fas fa-info-circle"></i> View Courses
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="Images/1.jpeg" alt="Expert Academy - IT Training">
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="content-section">
+        <div class="section-title">
+            <h2>Our Professional Courses</h2>
+            <p>Comprehensive training programs designed for your success in IT industry</p>
+        </div>
+
+        <div class="course-grid">
+            <!-- Main Featured Course -->
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="Images/2.jpeg" alt="Hardware & Network Engineering">
+                    <div class="course-badge">Featured Course</div>
+                </div>
+                <div class="course-content">
+                    <h3>Diploma in Hardware & Network Engineering (DHNE)</h3>
+                    <p>Comprehensive program covering computer hardware assembly, networking fundamentals, troubleshooting, system administration, and server management.</p>
+                    
+                    <ul class="course-features">
+                        <li><i class="fas fa-check"></i> Computer Hardware Assembly & Repair</li>
+                        <li><i class="fas fa-check"></i> Network Configuration & Management</li>
+                        <li><i class="fas fa-check"></i> Operating System Installation & Configuration</li>
+                        <li><i class="fas fa-check"></i> Advanced Troubleshooting & Diagnostics</li>
+                        <li><i class="fas fa-check"></i> Server Administration & Maintenance</li>
+                        <li><i class="fas fa-check"></i> Industry Project Implementation</li>
+                    </ul>
+
+                    <div class="course-meta">
+                        <div class="duration">
+                            <i class="fas fa-clock"></i> 1 Year Duration
+                        </div>
+                        <div class="certification">
+                            PSC Approved
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CCTV Course -->
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=400&h=200&fit=crop&crop=center" alt="CCTV Installation">
+                    <div class="course-badge">Popular</div>
+                </div>
+                <div class="course-content">
+                    <h3>CCTV Installation & Maintenance</h3>
+                    <p>Learn professional CCTV system installation, configuration, and maintenance for residential and commercial security systems.</p>
+                    
+                    <ul class="course-features">
+                        <li><i class="fas fa-check"></i> Camera Types & Selection</li>
+                        <li><i class="fas fa-check"></i> DVR/NVR Configuration</li>
+                        <li><i class="fas fa-check"></i> Network Setup for IP Cameras</li>
+                        <li><i class="fas fa-check"></i> Remote Monitoring Setup</li>
+                        <li><i class="fas fa-check"></i> Maintenance & Troubleshooting</li>
+                    </ul>
+
+                    <div class="course-meta">
+                        <div class="duration">
+                            <i class="fas fa-clock"></i> 3 Months
+                        </div>
+                        <div class="certification">
+                            Certified
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AOC Course -->
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=200&fit=crop&crop=center" alt="Administrative Office Computing">
+                </div>
+                <div class="course-content">
+                    <h3>Administrative Office Computing (AOC)</h3>
+                    <p>Master essential office computing skills including MS Office Suite, database management, and administrative software applications.</p>
+                    
+                    <ul class="course-features">
+                        <li><i class="fas fa-check"></i> MS Office Suite (Word, Excel, PowerPoint)</li>
+                        <li><i class="fas fa-check"></i> Database Management</li>
+                        <li><i class="fas fa-check"></i> Email & Communication Tools</li>
+                        <li><i class="fas fa-check"></i> Internet & Web Applications</li>
+                        <li><i class="fas fa-check"></i> Digital Documentation</li>
+                    </ul>
+
+                    <div class="course-meta">
+                        <div class="duration">
+                            <i class="fas fa-clock"></i> 6 Months
+                        </div>
+                        <div class="certification">
+                            Certified
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Computer Hardware Maintenance -->
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="Images/1.jpeg" alt="Computer Hardware Maintenance">
+                </div>
+                <div class="course-content">
+                    <h3>Diploma Computer Hardware Maintenance (DCHM)</h3>
+                    <p>Specialized training in computer hardware diagnosis, repair, and maintenance for desktop and laptop systems.</p>
+                    
+                    <ul class="course-features">
+                        <li><i class="fas fa-check"></i> Hardware Component Identification</li>
+                        <li><i class="fas fa-check"></i> Motherboard & CPU Repair</li>
+                        <li><i class="fas fa-check"></i> Memory & Storage Troubleshooting</li>
+                        <li><i class="fas fa-check"></i> Power Supply Testing</li>
+                        <li><i class="fas fa-check"></i> Preventive Maintenance</li>
+                    </ul>
+
+                    <div class="course-meta">
+                        <div class="duration">
+                            <i class="fas fa-clock"></i> 4 Months
+                        </div>
+                        <div class="certification">
+                            Certified
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Laptop Servicing -->
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=400&h=200&fit=crop&crop=center" alt="Laptop Servicing">
+                </div>
+                <div class="course-content">
+                    <h3>Certified Course in Laptop Servicing (CCLS)</h3>
+                    <p>Comprehensive laptop repair and servicing course covering all major laptop brands and common issues.</p>
+                    
+                    <ul class="course-features">
+                        <li><i class="fas fa-check"></i> Laptop Disassembly & Assembly</li>
+                        <li><i class="fas fa-check"></i> Screen & Keyboard Replacement</li>
+                        <li><i class="fas fa-check"></i> Battery & Charging Issues</li>
+                        <li><i class="fas fa-check"></i> Motherboard Level Repair</li>
+                        <li><i class="fas fa-check"></i> Software Installation & Recovery</li>
+                    </ul>
+
+                    <div class="course-meta">
+                        <div class="duration">
+                            <i class="fas fa-clock"></i> 3 Months
+                        </div>
+                        <div class="certification">
+                            Certified
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Printer Service -->
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=400&h=200&fit=crop&crop=center" alt="Printer Service">
+                </div>
+                <div class="course-content">
+                    <h3>Certificate in Printer Service Technician (CPST)</h3>
+                    <p>Learn printer repair, maintenance, and servicing for inkjet, laser, and multi-function printers.</p>
+                    
+                    <ul class="course-features">
+                        <li><i class="fas fa-check"></i> Inkjet & Laser Printer Repair</li>
+                        <li><i class="fas fa-check"></i> Cartridge Refilling Techniques</li>
+                        <li><i class="fas fa-check"></i> Network Printer Setup</li>
+                        <li><i class="fas fa-check"></i> Scanner & Copier Maintenance</li>
+                        <li><i class="fas fa-check"></i> Troubleshooting Common Issues</li>
+                    </ul>
+
+                    <div class="course-meta">
+                        <div class="duration">
+                            <i class="fas fa-clock"></i> 2 Months
+                        </div>
+                        <div class="certification">
+                            Certified
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Phone Service -->
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=200&fit=crop&crop=center" alt="Mobile Phone Service">
+                </div>
+                <div class="course-content">
+                    <h3>Certified Mobile Phone Service & Maintenance (CMPSM)</h3>
+                    <p>Complete mobile phone repair course covering Android and iOS devices, hardware and software issues.</p>
+                    
+                    <ul class="course-features">
+                        <li><i class="fas fa-check"></i> Smartphone Hardware Repair</li>
+                        <li><i class="fas fa-check"></i> Screen & Display Replacement</li>
+                        <li><i class="fas fa-check"></i> Battery & Charging Solutions</li>
+                        <li><i class="fas fa-check"></i> Software Flashing & Recovery</li>
+                        <li><i class="fas fa-check"></i> Water Damage Repair</li>
+                    </ul>
+
+                    <div class="course-meta">
+                        <div class="duration">
+                            <i class="fas fa-clock"></i> 3 Months
+                        </div>
+                        <div class="certification">
+                            Certified
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Robotics Arduino -->
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="Images/4.jpeg" alt="Robotics Arduino">
+                </div>
+                <div class="course-content">
+                    <h3>Certificate in Robotics Using Arduino (CRA)</h3>
+                    <p>Learn robotics programming and development using Arduino microcontrollers and various sensors.</p>
+                    
+                    <ul class="course-features">
+                        <li><i class="fas fa-check"></i> Arduino Programming</li>
+                        <li><i class="fas fa-check"></i> Sensor Integration</li>
+                        <li><i class="fas fa-check"></i> Motor Control Systems</li>
+                        <li><i class="fas fa-check"></i> Robotics Project Development</li>
+                        <li><i class="fas fa-check"></i> IoT Applications</li>
+                    </ul>
+
+                    <div class="course-meta">
+                        <div class="duration">
+                            <i class="fas fa-clock"></i> 4 Months
+                        </div>
+                        <div class="certification">
+                            Certified
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Administrator -->
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&h=200&fit=crop&crop=center" alt="System Administrator">
+                </div>
+                <div class="course-content">
+                    <h3>Diploma in System Administrator in Networking (DSAN)</h3>
+                    <p>Advanced course in system administration, network management, and server technologies.</p>
+                    
+                    <ul class="course-features">
+                        <li><i class="fas fa-check"></i> Windows Server Administration</li>
+                        <li><i class="fas fa-check"></i> Linux System Management</li>
+                        <li><i class="fas fa-check"></i> Active Directory Services</li>
+                        <li><i class="fas fa-check"></i> Network Security Implementation</li>
+                        <li><i class="fas fa-check"></i> Database Administration</li>
+                    </ul>
+
+                    <div class="course-meta">
+                        <div class="duration">
+                            <i class="fas fa-clock"></i> 8 Months
+                        </div>
+                        <div class="certification">
+                            PSC Approved
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="content-section">
+        <div class="section-title">
+            <h2>About Expert Academy</h2>
+            <p>Empowering students with cutting-edge IT skills since our inception</p>
+        </div>
+
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Our Mission</h3>
+                <p>Expert Academy is dedicated to providing world-class technical education and training in the field of Information Technology. We bridge the gap between academic learning and industry requirements by offering practical, hands-on training programs.</p>
+                
+                <h3>Our Vision</h3>
+                <p>To become the leading IT training institute in Kerala, known for our innovative teaching methods, industry-relevant curriculum, and successful placement record.</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Course</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Placement Assistance</span>
+                    </div>
+                    <!-- <div class="stat-item">
+                        <span class="stat-number">Expert</span>
+                        <span class="stat-label">Instructors</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div> -->
+                </div>
+            </div>
+            
+            <div>
+                <img src="Images/1.jpeg" alt="About Expert Academy" style="width: 100%; height: 400px; object-fit: cover; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+            </div>
+        </div>
+
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 4rem 2rem; border-radius: 20px; color: white; text-align: center; margin: 4rem 0;">
+            <h3 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Kerala State RUTRONIX Approved</h3>
+            <p style="font-size: 1.2rem; opacity: 0.9; max-width: 800px; margin: 0 auto;">Expert Academy is officially recognized and approved by Kerala State RUTRONIX, ensuring that our courses meet the highest educational standards and industry requirements. Our certificates are widely accepted by employers across Kerala and India.</p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="content-section">
+        <div class="section-title">
+            <h2>Why Choose Expert Academy?</h2>
+            <p>Discover what makes us the preferred choice for IT training in Malappuram</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <h3>PSC Approved Certification</h3>
+                <p>Our courses are officially recognized by Kerala State RUTRONIX, ensuring industry-standard certification that is widely accepted by employers.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3>Hands-on Practical Training</h3>
+                <p>Learn by doing with our state-of-the-art laboratories equipped with modern hardware and software for real-world experience.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h3>Expert Instructors</h3>
+                <p>Learn from industry professionals with years of experience in hardware, networking, and IT infrastructure management.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3>Job Placement Assistance</h3>
+                <p>We provide comprehensive placement support including resume building, interview preparation, and direct connections with hiring partners.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>Flexible Timings</h3>
+                <p>Choose from morning, afternoon, or evening batches to fit your schedule. Weekend batches also available for working professionals.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3>Modern Infrastructure</h3>
+                <p>Well-equipped labs with latest computers, networking equipment, and software tools for comprehensive hands-on learning experience.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <h3>Small Batch Size</h3>
+                <p>Limited students per batch to ensure personalized attention and better learning outcomes for every student.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h3>Industry Projects</h3>
+                <p>Work on real-world projects and case studies to gain practical experience and build a strong portfolio for job interviews.</p>
+            </div>
+        </div>
+
+        <!-- Training Methodology -->
+        <div style="background: #f8f9fa; padding: 4rem 2rem; border-radius: 20px; margin: 4rem 0;">
+            <h3 style="text-align: center; font-size: 2.5rem; color: #2c5aa0; margin-bottom: 3rem;">Our Training Methodology</h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div style="text-align: center; padding: 2rem;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(45deg, #667eea, #764ba2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 2rem;">1</div>
+                    <h4 style="color: #2c5aa0; margin-bottom: 1rem;">Theory Foundation</h4>
+                    <p style="color: #666;">Strong theoretical foundation with comprehensive understanding of concepts and principles.</p>
+                </div>
+                
+                <div style="text-align: center; padding: 2rem;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(45deg, #ff6b6b, #ffa500); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 2rem;">2</div>
+                    <h4 style="color: #2c5aa0; margin-bottom: 1rem;">Practical Implementation</h4>
+                    <p style="color: #666;">Hands-on practice sessions in well-equipped labs with modern equipment and tools.</p>
+                </div>
+                
+                <div style="text-align: center; padding: 2rem;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(45deg, #28a745, #20c997); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 2rem;">3</div>
+                    <h4 style="color: #2c5aa0; margin-bottom: 1rem;">Project Work</h4>
+                    <p style="color: #666;">Real-world projects and assignments to apply learned skills in practical scenarios.</p>
+                </div>
+                
+                <div style="text-align: center; padding: 2rem;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(45deg, #6f42c1, #5a32a3); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 2rem;">4</div>
+                    <h4 style="color: #2c5aa0; margin-bottom: 1rem;">Assessment & Certification</h4>
+                    <p style="color: #666;">Regular assessments and final certification upon successful completion of the course.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="content-section">
+        <div class="section-title">
+            <h2>Our Campus & Facilities</h2>
+            <p>Take a virtual tour of our modern training facilities and infrastructure</p>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=250&fit=crop" alt="Computer Lab">
+                <div class="gallery-overlay">
+                    <h3>Computer Laboratory</h3>
+                    <p>State-of-the-art computer lab with latest hardware and software for hands-on training.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=400&h=250&fit=crop" alt="Hardware Lab">
+                <div class="gallery-overlay">
+                    <h3>Hardware Training Lab</h3>
+                    <p>Dedicated hardware lab with various computer components for practical training.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=250&fit=crop" alt="Networking Lab">
+                <div class="gallery-overlay">
+                    <h3>Networking Laboratory</h3>
+                    <p>Professional networking lab with switches, routers, and networking equipment.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=250&fit=crop" alt="Classroom">
+                <div class="gallery-overlay">
+                    <h3>Modern Classrooms</h3>
+                    <p>Air-conditioned classrooms equipped with projectors and modern teaching aids.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&h=250&fit=crop" alt="Server Room">
+                <div class="gallery-overlay">
+                    <h3>Server Room</h3>
+                    <p>Professional server room setup for advanced networking and system administration training.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=400&h=250&fit=crop" alt="CCTV Training">
+                <div class="gallery-overlay">
+                    <h3>CCTV Training Area</h3>
+                    <p>Dedicated area for CCTV installation and configuration practical training.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=400&h=250&fit=crop" alt="Laptop Servicing">
+                <div class="gallery-overlay">
+                    <h3>Laptop Servicing Lab</h3>
+                    <p>Specialized lab for laptop repair and maintenance training with proper tools.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=250&fit=crop" alt="Mobile Repair Lab">
+                <div class="gallery-overlay">
+                    <h3>Mobile Repair Workshop</h3>
+                    <p>Professional mobile phone repair workshop with all necessary tools and equipment.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=250&fit=crop" alt="Robotics Lab">
+                <div class="gallery-overlay">
+                    <h3>Robotics & Arduino Lab</h3>
+                    <p>Modern robotics lab with Arduino kits, sensors, and development tools.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Student Success Stories -->
+        <!-- <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 4rem 2rem; border-radius: 20px; color: white; margin: 4rem 0;">
+            <h3 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem;">Student Success Stories</h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; backdrop-filter: blur(10px);">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="width: 60px; height: 60px; background: #ffd700; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; color: #333; font-weight: bold;">RK</div>
+                        <div>
+                            <h4>Rahul Kumar</h4>
+                            <p style="opacity: 0.8;">DHNE Graduate - 2024</p>
+                        </div>
+                    </div>
+                    <p style="opacity: 0.9;">"Expert Academy provided me with excellent training in hardware and networking. The practical approach and expert guidance helped me secure a job in a leading IT company."</p>
+                </div> -->
+                
+                <!-- <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; backdrop-filter: blur(10px);">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="width: 60px; height: 60px; background: #ffd700; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; color: #333; font-weight: bold;">SP</div>
+                        <div>
+                            <h4>Sneha Priya</h4>
+                            <p style="opacity: 0.8;">CCTV Course - 2024</p>
+                        </div>
+                    </div>
+                    <p style="opacity: 0.9;">"The CCTV course at Expert Academy was comprehensive and practical. I'm now successfully running my own CCTV installation business."</p>
+                </div> -->
+                
+                <!-- <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; backdrop-filter: blur(10px);">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="width: 60px; height: 60px; background: #ffd700; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; color: #333; font-weight: bold;">MR</div>
+                        <div>
+                            <h4>Mohammed Rashid</h4>
+                            <p style="opacity: 0.8;">Mobile Repair - 2023</p>
+                        </div>
+                    </div>
+                    <p style="opacity: 0.9;">"The mobile repair course gave me the skills and confidence to start my own mobile service center. The instructors were very supportive."</p>
+                </div>
+            </div> -->
+        <!-- </div> -->
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="content-section">
+            <div class="section-title" style="color: white;">
+                <h2 style="color: #ffd700;">Contact Us</h2>
+                <p style="color: rgba(255,255,255,0.9);">Get in touch with us to start your journey in IT excellence</p>
+            </div>
+
+            <div class="contact-container">
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    
+                    <ul class="contact-details">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Address</strong><br>
+                                Expert Academy, Chappanangadi<br>
+                                Near PMSA VHS, Malappuram<br>
+                                Kerala - 676303
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Phone Numbers</strong><br>
+                                <a href="tel:+919072800036" style="color: #ffd700; text-decoration: none;">+91-9072800036</a><br>
+                                <a href="tel:+919072800037" style="color: #ffd700; text-decoration: none;">+91-9072800037</a>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fab fa-whatsapp"></i>
+                            <div>
+                                <strong>WhatsApp</strong><br>
+                                <a href="https://wa.me/919072800036" target="_blank" style="color: #ffd700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+                                    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong><br>
+                                <a href="mailto:expertacademy81@gmail.com" style="color: #ffd700; text-decoration: none;">expertacademy81@gmail.com</a>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong>Working Hours</strong><br>
+                                Monday - Saturday: 9:00 AM - 6:00 PM<br>
+                                Sunday: Closed
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-globe"></i>
+                            <div>
+                                <strong>Certification Authority</strong><br>
+                                <a href="http://www.keralastatrutronix.com" target="_blank" style="color: #ffd700; text-decoration: none;">www.keralastatrutronix.com</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!-- Quick Action Buttons -->
+                    <div class="quick-actions">
+                        <a href="https://wa.me/919072800036?text=Hello! I'm interested in Expert Academy's courses. Can you provide more information?" 
+                           target="_blank" class="action-btn whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> WhatsApp Us
+                        </a>
+                        <a href="tel:+919072800036" class="action-btn call-btn">
+                            <i class="fas fa-phone"></i> Call Now
+                        </a>
+                        <a href="mailto:expertacademy81@gmail.com?subject=Course Inquiry - Expert Academy" class="action-btn email-btn">
+                            <i class="fas fa-envelope"></i> Email Us
+                        </a>
+                    </div>
+
+                    <!-- Location Info -->
+                    <div class="location-info">
+                        <h4>Find Us</h4>
+                        <p>Located in the heart of Chappanangadi, our academy is easily accessible by public transport. We are situated near PMSA VHS, making it convenient for students from Malappuram and surrounding areas including Tirur, Tanur, and Kottakkal.</p>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h3 style="margin-bottom: 2rem; text-align: center; color: white;">Send Us a Message</h3>
+                    
+                    <div id="successMessage" class="success-message">
+                        <i class="fas fa-check-circle"></i> Thank you! Your message has been sent successfully. We'll get back to you soon.
+                    </div>
+                    
+                    <div id="errorMessage" class="error-message">
+                        <i class="fas fa-exclamation-triangle"></i> Sorry, there was an error sending your message. Please try again or contact us directly.
+                    </div>
+
+                    <form id="contactForm" onsubmit="submitForm(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" placeholder="10-digit mobile number">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="course">Course of Interest</label>
+                            <select id="course" name="course">
+                                <option value="">Select a course</option>
+                                <option value="dhne">Diploma in Hardware & Network Engineering (DHNE)</option>
+                                <option value="cctv">CCTV Installation & Maintenance</option>
+                                <option value="aoc">Administrative Office Computing (AOC)</option>
+                                <option value="dchm">Diploma Computer Hardware Maintenance (DCHM)</option>
+                                <option value="ccls">Certified Course in Laptop Servicing (CCLS)</option>
+                                <option value="cpst">Certificate in Printer Service Technician (CPST)</option>
+                                <option value="cmpsm">Certified Mobile Phone Service & Maintenance (CMPSM)</option>
+                                <option value="cra">Certificate in Robotics Using Arduino (CRA)</option>
+                                <option value="dsan">Diploma in System Administrator in Networking (DSAN)</option>
+                                <option value="other">Other / General Inquiry</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Tell us about your goals, preferred timings, or any specific questions you have..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="newsletter" name="newsletter">
+                                <label for="newsletter">I would like to receive updates about new courses and promotions</label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Expert Academy</h3>
+                <p>Leading IT training institute in Kerala, certified by RUTRONIX. We provide industry-relevant education that bridges the gap between academic knowledge and practical skills.</p>
+                <div class="social-links">
+                    <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#features">Why Choose Us</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Popular Courses</h3>
+                <ul>
+                    <li><a href="#courses">Hardware & Network Engineering</a></li>
+                    <li><a href="#courses">CCTV Installation</a></li>
+                    <li><a href="#courses">Mobile Repair</a></li>
+                    <li><a href="#courses">Laptop Servicing</a></li>
+                    <li><a href="#courses">Administrative Computing</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Chappanangadi, Near PMSA VHS, Malappuram</li>
+                    <li><i class="fas fa-phone"></i> +91-9072800036</li>
+                    <li><i class="fas fa-envelope"></i> expertacademy81@gmail.com</li>
+                    <li><i class="fas fa-globe"></i> www.keralastatrutronix.com</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Expert Academy. All rights reserved. | Certified by Kerala State RUTRONIX</p>
+        </div>
+    </footer>
+
+    <script>
+        // Form submission handler
+        function submitForm(event) {
+            event.preventDefault();
+            
+            const form = document.getElementById('contactForm');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Hide previous messages
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            // Get form data
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            
+            // Basic validation
+            if (!data.firstName || !data.lastName || !data.email || !data.phone) {
+                errorMessage.textContent = 'Please fill in all required fields.';
+                errorMessage.style.display = 'flex';
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data.email)) {
+                errorMessage.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Please enter a valid email address.';
+                errorMessage.style.display = 'flex';
+                return;
+            }
+            
+            // Phone validation
+            const phoneRegex = /^[0-9]{10}$/;
+            if (!phoneRegex.test(data.phone)) {
+                errorMessage.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Please enter a valid 10-digit phone number.';
+                errorMessage.style.display = 'flex';
+                return;
+            }
+            
+            // Simulate form submission
+            const submitBtn = form.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                // Show success message
+                successMessage.style.display = 'flex';
+                
+                // Reset form
+                form.reset();
+                
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                // Scroll to success message
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Optional: Send to WhatsApp
+                const message = `New inquiry from Expert Academy website:%0A%0AName: ${data.firstName} ${data.lastName}%0AEmail: ${data.email}%0APhone: ${data.phone}%0ACourse: ${data.course || 'Not specified'}%0AMessage: ${data.message || 'No message'}`;
+                
+                // Uncomment to also send to WhatsApp
+                // window.open(`https://wa.me/919072800036?text=${message}`, '_blank');
+                
+            }, 2000);
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Smooth scrolling and active nav highlighting
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section[id]');
+            
+            // Update active navigation on scroll
+            function updateActiveNav() {
+                const scrollPos = window.scrollY + 100;
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
+                    
+                    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${sectionId}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }
+            
+            // Close mobile menu when clicking on a link
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    const navMenu = document.getElementById('navMenu');
+                    navMenu.classList.remove('active');
+                });
+            });
+            
+            window.addEventListener('scroll', updateActiveNav);
+            updateActiveNav();
+
+            // Scroll animations
+            const animatedElements = document.querySelectorAll('.course-card, .feature-card, .gallery-item');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
